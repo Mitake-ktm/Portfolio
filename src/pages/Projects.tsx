@@ -1,6 +1,9 @@
-
 function Projects(){
-    return <div className='lmj-banner'>test</div>
-}
+    return(
+    <div>
+        <h1>Mes projets</h1>
+        <p>Voici une sélection de mes projets récents.</p>
+    </div>); 
+};
 
 export default Projects
