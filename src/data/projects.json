@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "title": "Portfolio",
+        "description": "This is my portfolio",
+        "imageUrl": "project1.jpg",
+        "url": ""
+    },
+    {
+        "id": 2,
+        "title": "Project 2",
+        "description": "This is my project 2",
+        "imageUrl": "project2.jpg",
+        "url": ""
+    },
+    {
+        "id": 3,
+        "title": "Project 3",
+        "description": "This is my project 3",
+        "imageUrl": "project3.jpg",
+        "url": ""
+    }
+]
