@@ -2,11 +2,18 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Accueil</Link></li>
-        <li><Link to="/projects">Projets</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+    <nav className='bg-indigo-900 text-gray-100 p-4'>
+      <h1 className="text-xl font-bold">「Mitake」</h1>
+      <ul className='flex justify-center space-x-6'>
+        <li>
+          <Link to="/" className='hover:text-purple-400 transition'>Accueil</Link>
+        </li>
+        <li>
+          <Link to="/projects" className='hover:text-purple-600 transition'>Projets</Link>
+        </li>
+        <li>
+          <Link to="/contact" className='hover:text-purple-600 transition'>Contact</Link>
+        </li>
       </ul>
     </nav>
   );

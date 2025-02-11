@@ -3,9 +3,11 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Hero from './sections/Hero'
 
 function App() {
   return (
+    <>
     <Router>
       <Header />
       <Routes>
@@ -14,6 +16,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
+    </>
   );
 }
 
