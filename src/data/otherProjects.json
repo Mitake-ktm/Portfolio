@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Dessin 1",
+        "category": "Dessin",
+        "image": "./images/dessin1.jpg",
+        "description": "Premier dessin",
+        "url": "",
+        "technologies": ["CLIP STUDIO PAINT", "WACOM INTUOS S"],
+        "date": "Janvier 2025"
+    },
+    {
+        "id": 2,
+        "title": "Pixel Art 1",
+        "category": "Pixel Art",
+        "image": "./images/pixelArt1.jpg",
+        "description": "Premier pixel art",
+        "url": "",
+        "technologies": ["ASEPRITE", "WACOM INTUOS S"],
+        "date": "Février 2025"
+    },
+    {
+        "id": 3,
+        "title": "Modèle 3d 1",
+        "category": "3D",
+        "image": "./images/3D.jpg",
+        "description": "Premier Modèle 3d",
+        "url": "",
+        "technologies": ["BLENDER"],
+        "date": "Mars 2025"
+    }
+]

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa"
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -38,10 +39,14 @@ const Contact = () => {
                 <h3 className="text-lg font-semibold text-gray-700">Mes Réseaux</h3>
                 <div className="flex justify-center space-x-4 mt-3">
                     <a href="https://github.com/Mitake-ktm" target="_blank" className="text-gray-600 hover:text-purple-600 text-2xl" rel='noopener noreferrer'>
-                    Github</a>
+                        <FaGithub />
+                    </a>
                     <a href="https://www.instagram.com/mitake_ktm/" target="_blank" className="text-gray-600 hover:text-purple-600 text-2xl" rel='noopener noreferrer'>
-                    Instagram</a>
-                    <a href="https://www.linkedin.com/in/k%C3%A9vin-d-almeida-822b78266/" target="blank" className="text-gray-600 hover:text-purple-600 text-2xl" rel='noopener noreferrer'>Linkedin</a>
+                        <FaInstagram />
+                    </a>
+                    <a href="https://www.linkedin.com/in/k%C3%A9vin-d-almeida-822b78266/" target="blank" className="text-gray-600 hover:text-purple-600 text-2xl" rel='noopener noreferrer'>
+                        <FaLinkedin />
+                    </a>
                 </div>
             </div>
         </div>
