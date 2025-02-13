@@ -5,9 +5,12 @@
         "category": "Dessin",
         "image": "./images/dessin1.jpg",
         "description": "Premier dessin",
-        "url": "",
         "technologies": ["CLIP STUDIO PAINT", "WACOM INTUOS S"],
-        "date": "Janvier 2025"
+        "date": "Janvier 2025",
+        "links":[
+            {"name": "Instagram", "url": "https://www.instagram.com/"},
+            {"name": "Twitter", "url": "https://twitter.com/"}
+        ]
     },
     {
         "id": 2,
@@ -17,7 +20,11 @@
         "description": "Premier pixel art",
         "url": "",
         "technologies": ["ASEPRITE", "WACOM INTUOS S"],
-        "date": "Février 2025"
+        "date": "Février 2025",
+        "links":[
+            {"name": "Instagram", "url": "https://www.instagram.com/"},
+            {"name": "Twitter", "url": "https://twitter.com/"}
+        ]
     },
     {
         "id": 3,
@@ -27,6 +34,10 @@
         "description": "Premier Modèle 3d",
         "url": "",
         "technologies": ["BLENDER"],
-        "date": "Mars 2025"
+        "date": "Mars 2025",
+        "links":[
+            {"name": "Instagram", "url": "https://www.instagram.com/"},
+            {"name": "Twitter", "url": "https://twitter.com/"}
+        ]
     }
 ]

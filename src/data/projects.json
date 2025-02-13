@@ -3,6 +3,7 @@
         "id": 1,
         "title": "Portfolio",
         "description": "This is my portfolio",
+        "category": "Web",
         "imageUrl": "project1.jpg",
         "url": "",
         "githubUrl":"",
@@ -13,6 +14,7 @@
         "id": 2,
         "title": "Project 2",
         "description": "This is my project 2",
+        "category": "mobile",
         "imageUrl": "project2.jpg",
         "url": "",
         "githubUrl":"",
@@ -22,6 +24,7 @@
     {
         "id": 3,
         "title": "Project 3",
+        "category": "Jeu",
         "description": "This is my project 3",
         "imageUrl": "project3.jpg",
         "url": "",

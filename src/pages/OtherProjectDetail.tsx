@@ -28,6 +28,20 @@ const OtherProjectDetail = () => {
                     <li key={index}>{tech}</li>
                 ))}
             </ul>
+            {project.links && project.links.length > 0 && (
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold text-purple-600">Liens externes</h3>
+                    <ul className="mt-2 space-y-2">
+                        {project.links.map((link, index) => (
+                            <li key={index}>
+                                <a href={link.url} target="_blank" rel="noopener noreferrer" 
+                                className="text-blue-500 hover:text-blue-700 underline">
+                                {link.name}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     )
 };
