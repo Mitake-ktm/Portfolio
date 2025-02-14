@@ -30,9 +30,9 @@ const Projects = () =>{
 
             <div className="grid md:grid-cols-3 gap-6">
                 {filteredProjects.map((project) => (
-                    <Link to={`/project/${project.id}`} className="bg-white p-4 shadow-lg rounded-lg">
+                    <Link to={`/project/${project.id}`} className="bg-white p-4 shadow-lg rounded-lg transition transform hover:scale-105 hover:shadow-xl">
                         
-                        <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover rounded-lg" />
+                        <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-lg" />
                         <h3 className="text-xl font-semibold text-purple-600 mt-4">{project.title}</h3>
                         <p className="text-gray-600 mt-2">{project.description}</p>
                         <p className="text-gray-500 text-sm mt-2">{project.date}</p>

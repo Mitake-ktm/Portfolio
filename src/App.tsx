@@ -7,6 +7,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import OtherProjectDetail from './pages/OtherProjectDetail';
 import Contact from './pages/Contact';
 
+
 function App() {
   return (
     <>
