@@ -2,26 +2,27 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import projectsData from "../data/otherProjects.json";
 
-const categories = ["Tous", "Dessin", "Pixel Art", "3D"];
-
 const OtherProjects = () => {
     const [selectedCategory, setSelectedCategory] = useState("Tous");
-    
-    const filteredProjects = 
-        selectedCategory === "Tous"
+
+    const categories = ["Tous", ...Array.from(new Set(projectsData.map((project) => project.category)))];
+
+    const filteredProjects = selectedCategory === "Tous"
         ? projectsData
         : projectsData.filter((project) => project.category === selectedCategory);
-    
+
     return (
-        <div className="max-w-5xl mx-auto p-6">
-            <h2 className="text-3xl font-bold text-purple-600 text-center mb-6">Mes autres projects</h2>
+        <div className="max-w-6xl mx-auto p-6 bg-[#F5E1DA] min-h-screen">
+            <h2 className="text-4xl font-mincho text-red-700 text-center mb-6">Mes Autres Projets</h2>
 
             <div className="flex justify-center space-x-4 mb-6">
                 {categories.map((category) => (
                     <button
                         key={category}
-                        className={`px-4 py-2 rounded-lg transition ${
-                            selectedCategory === category ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-700"
+                        className={`px-4 py-2 rounded-lg border transition ${
+                            selectedCategory === category
+                                ? "bg-red-700 text-white"
+                                : "border-gray-400 text-gray-700 hover:bg-[#C4A95E] hover:text-white"
                         }`}
                         onClick={() => setSelectedCategory(category)}
                     >
@@ -32,19 +33,16 @@ const OtherProjects = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
                 {filteredProjects.map((project) => (
-                    <div key={project.id} className="bg-white shadow-md rounded-lg overflow-hidden">
-                        <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-semibold text-purple-600">{project.title}</h3>
-                            <p className="text-gray-600 mt-2">{project.description}</p>
-                            <Link to={`/other-projects/${project.id}`} className="text-purple-600 hover:text-purple-800 mt-4 inline-block">
-                            Voir plus</Link>
-                        </div>
-                    </div>
+                    <Link key={project.id} to={`/other-projects/${project.id}`} className="bg-white p-4 shadow-lg rounded-lg transition transform hover:scale-105 hover:shadow-xl">
+                        <img src={project.image} alt={project.title} className="w-full h-48 object-cover rounded-lg" />
+                        <h3 className="text-xl font-mincho text-red-700 mt-4">{project.title}</h3>
+                        <p className="text-gray-600 mt-2">{project.description}</p>
+                        <p className="text-gray-500 text-sm mt-2">📅 {project.date}</p>
+                    </Link>
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default OtherProjects;
