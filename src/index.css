@@ -4,24 +4,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
 
 @layer base {
-    /* Mode clair */
-    :root {
-      --bg-primary: #F5E1DA; /* Beige Washi */
-      --text-primary: #1A1A1A; /* Noir Sumi */
-      --accent: #B82C2C; /* Rouge Aka */
-    }
-  
-    /* Mode sombre */
-    .dark {
-      --bg-primary: #1A1A1A; /* Noir Sumi */
-      --text-primary: #F5E1DA; /* Beige Washi */
-      --accent: #C4A95E; /* Doré Kogane */
-    }
-}
+  /* Mode clair */
+  :root {
+    --bg-primary: #F5E1DA; /* Beige Washi */
+    --text-primary: #1A1A1A; /* Noir Sumi */
+    --accent: #7D5BA6; /* Violet Fuji */
+    --hover: #EFA7A7; /* Rose Sakura */
+  }
+
+  /* Mode sombre */
+  .dark {
+    --bg-primary: #1A1A1A; /* Noir Sumi */
+    --text-primary: #F5E1DA; /* Beige Washi */
+    --accent: #89CFF0; /* Bleu Kumo */
+    --hover: #EFA7A7; /* Rose Sakura */
+  }
 
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
     font-family: 'Zen Kaku Gothic New', sans-serif;
+  }
 }

@@ -4,7 +4,7 @@
         "title": "Portfolio",
         "description": "This is my portfolio",
         "category": "Web",
-        "image": "project1.jpg",
+        "image": "waves-pattern.jpg",
         "link": "",
         "github":"",
         "technologies": ["React", "TypeScript", "Tailwind CSS"],
