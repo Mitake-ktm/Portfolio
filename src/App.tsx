@@ -5,6 +5,8 @@ import Projects from './pages/Projects';
 import OtherProjects from './pages/OtherProjects';
 import ProjectDetail from './pages/ProjectDetail';
 import OtherProjectDetail from './pages/OtherProjectDetail';
+import WebNovel from "./pages/WebNovel";
+import WebNovelChapter from "./pages/WebNovelChapter";
 import Contact from './pages/Contact';
 
 
@@ -19,6 +21,8 @@ function App() {
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path='/other-projects' element={<OtherProjects />} />
         <Route path='/other-projects/:id' element={<OtherProjectDetail />} />
+        <Route path="/web-novel" element={<WebNovel />} />
+        <Route path="/web-novel/:id" element={<WebNovelChapter />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>

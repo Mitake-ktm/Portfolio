@@ -1,137 +1,92 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import projectsData from "../data/otherProjects.json";
 
-const OtherProjectDetail = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+const OtherProjects = () => {
+    const [selectedCategory, setSelectedCategory] = useState("Tous");
 
-    const project = projectsData.find((p) => p.id.toString() === id);
+    const categories = ["Tous", ...Array.from(new Set(projectsData.map((project) => project.category)))];
 
-    if (!project) {
-        return (
-            <motion.h2 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-center text-red-700 text-2xl font-mincho mt-10"
-            >
-                Projet non trouvé.
-            </motion.h2>
-        );
-    }
+    const filteredProjects = selectedCategory === "Tous"
+        ? projectsData
+        : projectsData.filter((project) => project.category === selectedCategory);
 
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="bg-[var(--bg-primary)] min-h-screen py-12 px-6"
+            className="max-w-6xl mx-auto p-6 bg-[var(--bg-primary)] min-h-screen"
         >
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6"
+            <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="text-4xl font-mincho text-[var(--accent)] text-center mb-6"
             >
-                <motion.h1 
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-4xl font-mincho text-[var(--accent)]"
-                >
-                    {project.title}
-                </motion.h1>
+                Mes Autres Projets
+            </motion.h1>
 
-                <motion.p 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="text-gray-500 mt-2"
-                >
-                    📅 Créé le : {project.date}
-                </motion.p>
-
-                <motion.img 
-                    src={`/images/${project.image}`} 
-                    alt={project.title} 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    onError={(e) => e.currentTarget.src = "/images/default.jpg"}
-                    className="w-full h-64 object-cover mt-4 rounded-md"
-                />
-
-                <motion.p 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="text-gray-700 mt-4"
-                >
-                    {project.description}
-                </motion.p>
-
-                <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.9 }}
-                    className="mt-4"
-                >
-                    <h3 className="text-lg font-semibold text-[var(--accent)]">Technologies utilisées :</h3>
-                    <ul className="flex flex-wrap mt-2">
-                        {project.technologies.length > 0 ? project.technologies.map((tech, index) => (
-                            <motion.li 
-                                key={index}
-                                initial={{ opacity: 0, y: 5 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                                className="bg-[var(--hover)] text-white rounded-full px-3 py-1 text-sm mr-2 mb-2"
-                            >
-                                {tech}
-                            </motion.li>
-                        )) : <li className="text-gray-500">Technologies non spécifiées</li>}
-                    </ul>
-                </motion.div>
-
-                {project.links?.length > 0 && (
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 1.2 }}
-                        className="mt-6"
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="flex gap-4 justify-center mb-6"
+            >
+                {categories.map((category) => (
+                    <motion.button
+                        key={category}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-4 py-2 rounded-lg border transition ${
+                            selectedCategory === category
+                                ? "bg-[var(--accent)] text-white"
+                                : "border-gray-400 text-gray-700 hover:bg-[var(--hover)] hover:text-white"
+                        }`}
+                        onClick={() => setSelectedCategory(category)}
                     >
-                        <h3 className="text-xl font-semibold text-[var(--accent)]">Liens externes</h3>
-                        <ul className="mt-2 space-y-2">
-                            {project.links.map((link, index) => (
-                                <li key={index}>
-                                    <a 
-                                        href={link.url} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="text-blue-500 hover:text-blue-700 underline"
-                                    >
-                                        🔗 {link.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
-                )}
+                        {category}
+                    </motion.button>
+                ))}
+            </motion.div>
 
-                <motion.button 
-                    onClick={() => navigate(-1)}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-6 bg-[var(--accent)] text-white px-4 py-2 rounded-lg hover:bg-[var(--hover)] transition"
-                >
-                    ⬅ Retour
-                </motion.button>
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+            >
+                <div className="grid md:grid-cols-3 gap-6">
+                    {filteredProjects.map((project, index) => {
+                        const isWebNovel = project.category === "Web Novel";
+                        const targetLink = isWebNovel
+                            ? "/web-novel"
+                            : `/other-projects/${project.id}`;
+
+                        return (
+                            <Link
+                                key={project.id}
+                                to={targetLink}
+                                className="bg-white p-4 shadow-lg rounded-lg transition transform hover:scale-105 hover:shadow-xl"
+                            >
+                                <img
+                                    src={`/images/${project.image}`}
+                                    alt={project.title}
+                                    className="w-full h-48 object-cover rounded-lg"
+                                    onError={(e) => (e.currentTarget.src = "/images/default.jpg")}
+                                />
+                                <h3 className="text-xl font-mincho text-[var(--accent)] mt-4">
+                                    {project.title}
+                                </h3>
+                                <p className="text-gray-600 mt-2">{project.description}</p>
+                                <p className="text-gray-500 text-sm mt-2">📅 {project.date}</p>
+                            </Link>
+                        );
+                    })}
+                </div>
             </motion.div>
         </motion.div>
     );
 };
 
-export default OtherProjectDetail;
+export default OtherProjects;
