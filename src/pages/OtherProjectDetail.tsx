@@ -6,7 +6,7 @@ const OtherProjectDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const project = projectsData.find((p) => p.id.toString() === id);
+    const project = projectsData.find((p) => String(p.id) === String(id));
 
     if (!project) {
         return (
@@ -49,7 +49,7 @@ const OtherProjectDetail = () => {
                     transition={{ duration: 0.6, delay: 0.5 }}
                     className="text-gray-500 mt-2"
                 >
-                    📅 Créé le : {project.date}
+                    📅 {project.date}
                 </motion.p>
 
                 <motion.img 
@@ -58,7 +58,7 @@ const OtherProjectDetail = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    onError={(e) => e.currentTarget.src = "/images/default.jpg"}
+                    onError={(e) => (e.currentTarget.src = "/images/default.jpg")}
                     className="w-full h-64 object-cover mt-4 rounded-md"
                 />
 
@@ -71,28 +71,32 @@ const OtherProjectDetail = () => {
                     {project.description}
                 </motion.p>
 
-                <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.9 }}
-                    className="mt-4"
-                >
-                    <h3 className="text-lg font-semibold text-[var(--accent)]">Technologies utilisées :</h3>
-                    <ul className="flex flex-wrap mt-2">
-                        {project.technologies.length > 0 ? project.technologies.map((tech, index) => (
-                            <motion.li 
-                                key={index}
-                                initial={{ opacity: 0, y: 5 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                                className="bg-[var(--hover)] text-white rounded-full px-3 py-1 text-sm mr-2 mb-2"
-                            >
-                                {tech}
-                            </motion.li>
-                        )) : <li className="text-gray-500">Technologies non spécifiées</li>}
-                    </ul>
-                </motion.div>
+                {/* Technologies */}
+                {project.technologies?.length > 0 && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.9 }}
+                        className="mt-4"
+                    >
+                        <h3 className="text-lg font-semibold text-[var(--accent)]">Technologies utilisées :</h3>
+                        <ul className="flex flex-wrap mt-2">
+                            {project.technologies.map((tech, index) => (
+                                <motion.li 
+                                    key={index}
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                                    className="bg-[var(--hover)] text-white rounded-full px-3 py-1 text-sm mr-2 mb-2"
+                                >
+                                    {tech}
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                )}
 
+                {/* Liens externes */}
                 {project.links?.length > 0 && (
                     <motion.div 
                         initial={{ opacity: 0 }}
@@ -118,6 +122,7 @@ const OtherProjectDetail = () => {
                     </motion.div>
                 )}
 
+                {/* Bouton retour */}
                 <motion.button 
                     onClick={() => navigate(-1)}
                     initial={{ opacity: 0, y: 10 }}

@@ -39,5 +39,19 @@
             {"name": "Instagram", "url": "https://www.instagram.com/"},
             {"name": "Twitter", "url": "https://twitter.com/"}
         ]
+    },
+    {
+        "id": 4,
+        "title": "Web Novel - Akai Sekai : Mike",
+        "category": "Web Novel",
+        "image": "Akai-sekai_cover.jpg",
+        "technologies": [""],
+        "description": "Dans un monde ravagé par une catastrophe oubliée, Mike, un jeune garçon solitaire, tente de survivre parmi les ruines.",
+        "type": "webnovel",
+        "url": "",
+        "date": "2025-05-08",
+        "links":[
+            
+        ]
     }
 ]
