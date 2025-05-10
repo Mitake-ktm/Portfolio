@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import projectsData from "../data/otherProjects.json";
 
 const OtherProjects = () => {
     const [selectedCategory, setSelectedCategory] = useState("Tous");
+    const navigate = useNavigate();
 
     const categories = ["Tous", ...Array.from(new Set(projectsData.map((project) => project.category)))];
 
@@ -13,13 +14,13 @@ const OtherProjects = () => {
         : projectsData.filter((project) => project.category === selectedCategory);
 
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             className="max-w-6xl mx-auto p-6 bg-[var(--bg-primary)] min-h-screen"
         >
-            <motion.h1 
+            <motion.h1
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
@@ -28,7 +29,7 @@ const OtherProjects = () => {
                 Mes Autres Projets
             </motion.h1>
 
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.8 }}
@@ -57,23 +58,30 @@ const OtherProjects = () => {
                 transition={{ duration: 1, delay: 0.5 }}
             >
                 <div className="grid md:grid-cols-3 gap-6">
-                    {filteredProjects.map((project, index) => (
-                        <Link 
-                            to={`/other-projects/${project.id}`} 
-                            key={project.id}
-                            className="bg-white p-4 shadow-lg rounded-lg transition transform hover:scale-105 hover:shadow-xl"
-                        >
-                            <img 
-                                src={`/images/${project.image}`} 
-                                alt={project.title} 
-                                className="w-full h-48 object-cover rounded-lg"
-                                onError={(e) => e.currentTarget.src = "/images/default.jpg"}
-                            />
-                            <h3 className="text-xl font-mincho text-[var(--accent)] mt-4">{project.title}</h3>
-                            <p className="text-gray-600 mt-2">{project.description}</p>
-                            <p className="text-gray-500 text-sm mt-2">📅 {project.date}</p>
-                        </Link>
-                    ))}
+                    {filteredProjects.map((project) => {
+                        const isWebNovel = project?.type?.toLowerCase?.() === "webnovel";
+                        const handleClick = () => {
+                            navigate(isWebNovel ? "/web-novel" : `/other-projects/${project.id}`);
+                        };
+
+                        return (
+                            <div
+                                key={project.id}
+                                onClick={handleClick}
+                                className="cursor-pointer bg-white p-4 shadow-lg rounded-lg transition transform hover:scale-105 hover:shadow-xl"
+                            >
+                                <img
+                                    src={`/images/${project.image}`}
+                                    alt={project.title}
+                                    className="w-full h-48 object-cover rounded-lg"
+                                    onError={(e) => (e.currentTarget.src = "/images/default.jpg")}
+                                />
+                                <h3 className="text-xl font-mincho text-[var(--accent)] mt-4">{project.title}</h3>
+                                <p className="text-gray-600 mt-2">{project.description}</p>
+                                <p className="text-gray-500 text-sm mt-2">📅 {project.date}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </motion.div>
         </motion.div>

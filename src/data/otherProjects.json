@@ -45,8 +45,13 @@
         "title": "Web Novel - Akai Sekai : Mike",
         "category": "Web Novel",
         "image": "Akai-sekai_cover.jpg",
-        "description": "Dans un monde ravagé par une catastrophe oubliée, Mike, un jeune garçon solitaire, tente de survivre parmi les ruines. Depuis peu, des voix étrange résonne dans sa tête — douce, familière… mais effrayante. Est-elle le reflet de sa folie, ou la clé d’une vérité enfouie dans les cendres du Monde Rouge ?Tandis que la frontière entre rêve, mémoire et réalité se brouille, Mike devra choisir : fuir ces voix… ou les écouter.",
+        "technologies": [""],
+        "description": "Dans un monde ravagé par une catastrophe oubliée, Mike, un jeune garçon solitaire, tente de survivre parmi les ruines.",
+        "type": "webnovel",
         "url": "",
-        "date": "2025-05-08"
+        "date": "2025-05-08",
+        "links":[
+            
+        ]
     }
 ]
