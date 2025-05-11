@@ -7,6 +7,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import OtherProjectDetail from './pages/OtherProjectDetail';
 import WebNovel from "./pages/WebNovel";
 import WebNovelChapter from "./pages/WebNovelChapter";
+import AdminAddChapter from "./pages/AdminAddChapter";
 import Contact from './pages/Contact';
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/other-projects/:id' element={<OtherProjectDetail />} />
         <Route path="/web-novel" element={<WebNovel />} />
         <Route path="/web-novel/:id" element={<WebNovelChapter />} />
+        <Route path="/admin/add-chapter" element={<AdminAddChapter />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
