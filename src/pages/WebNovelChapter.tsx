@@ -7,7 +7,10 @@ const WebNovelChapter = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const chapter = chapters.find((c) => c.id.toString() === id);
+    const chapterId = parseInt(id || "", 10);
+    const sortedChapters = [...chapters].sort((a, b) => a.id - b.id);
+    const chapterIndex = sortedChapters.findIndex(c => c.id === chapterId);
+    const chapter = sortedChapters[chapterIndex];
     const novel = novels.find((p) => p.category === "Web Novel");
 
     if (!chapter || !novel) {
@@ -22,6 +25,9 @@ const WebNovelChapter = () => {
             </motion.h2>
         );
     }
+
+    const prevChapter = sortedChapters[chapterIndex - 1];
+    const nextChapter = sortedChapters[chapterIndex + 1];
 
     return (
         <motion.div
@@ -47,6 +53,14 @@ const WebNovelChapter = () => {
                     {chapter.title}
                 </motion.h1>
 
+                <p className="text-sm text-gray-500 mb-4">
+                    Chapitre {chapterIndex + 1} / {sortedChapters.length}
+                </p>
+
+                <p className="text-sm text-gray-500 mb-4">
+                    🕓 Publié le : {chapter.date}
+                </p>
+
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -56,6 +70,36 @@ const WebNovelChapter = () => {
                     {chapter.content}
                 </motion.p>
 
+                <div className="flex flex-wrap justify-between mt-8 gap-4">
+                    {prevChapter && (
+                        <motion.button
+                            onClick={() => navigate(`/web-novel/${prevChapter.id}`)}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.7 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-[var(--accent)] text-white px-4 py-2 rounded-lg hover:bg-[var(--hover)] transition"
+                        >
+                            ⬅ {prevChapter.title}
+                        </motion.button>
+                    )}
+
+                    {nextChapter && (
+                        <motion.button
+                            onClick={() => navigate(`/web-novel/${nextChapter.id}`)}
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.7 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-[var(--accent)] text-white px-4 py-2 rounded-lg hover:bg-[var(--hover)] transition"
+                        >
+                            {nextChapter.title} ➡
+                        </motion.button>
+                    )}
+                </div>
+
                 <motion.button
                     onClick={() => navigate("/web-novel")}
                     initial={{ opacity: 0, y: 10 }}
@@ -63,9 +107,9 @@ const WebNovelChapter = () => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-6 bg-[var(--accent)] text-white px-4 py-2 rounded-lg hover:bg-[var(--hover)] transition"
+                    className="mt-6 w-full bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
                 >
-                    ⬅ Retour à la liste
+                    🏠 Retour à la liste des chapitres
                 </motion.button>
             </motion.div>
         </motion.div>
